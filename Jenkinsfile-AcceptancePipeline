@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+    stages {
+      stage("Starting Docker Container") {
+        steps {
+          echo "Starting Users Applications"
+          sh "docker-compose up  -d"
+        }
+        post{
+          success {
+            echo "Docker container started"
+          }
+        }
+      }
+      stage("Performance Test"){
+          steps {
+             echo "Running the Performance test"
+             sh 'mvn gatling:test'
+          }
+          post{
+            always {
+                gatlingArchive()
+            }
+          }
+      }
+      stage("Security Test"){
+        steps {
+          echo "Running the Security test"
+        }
+        post {
+            always {
+              echo "Security test Executed"
+            }
+        }
+      }
+      stage("Destroy the Docker container"){
+          steps {
+            echo "Going to destroy the docker container"
+            sh 'docker-compose down '
+          }
+          post {
+              always {
+                echo "Destroyed the docker container"
+              }
+          }
+        }
+    }
+}

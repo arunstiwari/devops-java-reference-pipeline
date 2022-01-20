@@ -7,4 +7,3 @@ COPY target/userservice.jar userservice.jar
 EXPOSE 80
 
 ENTRYPOINT ["java", "-jar", "userservice.jar"]
-
