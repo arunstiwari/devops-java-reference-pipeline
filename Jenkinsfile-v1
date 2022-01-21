@@ -9,6 +9,17 @@ pipeline{
                 echo "Building the Project"
                 sh 'mvn clean package'
             }
+            post{
+              success{
+                  echo "My project was built successfully"
+                  junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+                  archiveArtifacts 'target/*.jar'
+              }
+              failure{
+                // send some email to group
+                echo " My project had compilation error "
+              }
+            }
         }
         stage('Static Code Analysis'){
             steps{
