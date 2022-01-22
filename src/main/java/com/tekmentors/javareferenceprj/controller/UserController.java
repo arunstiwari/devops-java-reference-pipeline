@@ -17,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/users")
-    public ResponseEntity<List<User>> fetchUsers(){
+    public ResponseEntity<List<User>> fetchUsers() {
         log.info("In fetchUsers ");
         List<User> Users = userService.fetchUsers();
         return new ResponseEntity<>(Users, HttpStatus.OK);
