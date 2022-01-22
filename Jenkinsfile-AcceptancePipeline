@@ -2,6 +2,9 @@ pipeline {
     agent {
       label 'docker'
     }
+    tools {
+          maven 'mvn'
+        }
     stages {
       stage("Starting Docker Container") {
         steps {
