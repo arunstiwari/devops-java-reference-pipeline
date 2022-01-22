@@ -7,8 +7,10 @@ import io.gatling.jdbc.Predef._
 
 class UsersPageSimulation extends Simulation {
 
+	val url = scala.util.Properties.propOrElse("url","http://localhost:8080")
+
   private val httpProtocol = http
-    .baseUrl("http://localhost:8080")
+    .baseUrl(url)
     .inferHtmlResources()
     .acceptHeader("application/json")
 //    .acceptEncodingHeader("gzip, deflate")

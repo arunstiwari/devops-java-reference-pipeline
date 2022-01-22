@@ -5,6 +5,11 @@ pipeline {
     tools {
           maven 'mvn'
         }
+
+     parameters {
+       string defaultValue: 'http://167.71.239.102:9080', name: 'url'
+     }
+
     stages {
       stage("Starting Docker Container") {
         steps {
@@ -19,8 +24,8 @@ pipeline {
       }
       stage("Performance Test"){
           steps {
-             echo "Running the Performance test"
-             sh 'mvn gatling:test'
+             echo "Running the Performance test against environment ${url}"
+             sh "mvn gatling:test -Durl=${url}"
           }
           post{
             always {
