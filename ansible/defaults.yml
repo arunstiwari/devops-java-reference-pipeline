@@ -1,0 +1,14 @@
+GROUP: "app-user"
+OWNER: "app-user"
+
+APPLICATION_INSTALL_DIR: "/home/ansible/microservices"
+PROJECT_NAME: "java-reference-application"
+APPLICATION_IMAGE: "arunstiwari/userservice-ansible"
+APPLICATION_IMAGE_VERSION: "2.0"
+APPLICATION_CONTAINER_NAME: "app"
+APPLICATION_SERVER_PORT: 8080
+DATABASE_IMAGE: "postgres"
+DATABASE_IMAGE_VERSION: "13.1-alpine"
+DATABASE_USER: "postgres"
+DATABASE_PASSWORD: "docker"
+
